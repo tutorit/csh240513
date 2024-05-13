@@ -1,6 +1,18 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
-
+static int PromptForInt(string prompt)
+{
+    int ret = 0;
+    bool isValid=false;
+    while (!isValid)
+    {
+        Console.Write(prompt);
+        string input=Console.ReadLine();
+        isValid = int.TryParse(input, out ret);
+        if (!isValid) Console.WriteLine("Not a number");
+    }
+    return ret;
+}
 static void ArvausPeli()
 {
     Console.WriteLine("Arvauspeli");
@@ -11,9 +23,10 @@ static void ArvausPeli()
     while (true)
     {
         Console.Write("Guess a number (1-100):");
-        string guessString = Console.ReadLine();
-        bool isValid = int.TryParse(guessString, out int guess);
-        if (!isValid || (guess < 1) || (guess > 100))
+        //string guessString = Console.ReadLine();
+        //bool isValid = int.TryParse(guessString, out int guess);
+        int guess = PromptForInt("Guess a number (1-100):");
+        if (/*!isValid || */(guess < 1) || (guess > 100))
         {
             Console.WriteLine("Not between 1-100");
             continue;
@@ -32,6 +45,9 @@ static void ArvausPeli()
     Console.WriteLine($"You got it in {numGuesses} guesses");
 }
 
+ArvausPeli();
+
+
 /*
 int i = 32;
 var j = 64;
@@ -42,12 +58,12 @@ k = "Terve";
 Console.WriteLine("K " + k + ", " + k.GetType());
 */
 
-//ArvausPeli();
 
 static void ListDemo()
 {
-    string weekdays = "Mon,Tue,Wed,Thu,Fri";
-    string[] wda = weekdays.Split(',');
+    //string weekdays = "Mon,Tue,Wed,Thu,Fri";
+    //string[] wda = weekdays.Split(',');
+    string[] wda = { "Mon", "Tue", "Wed", "Thu", "Fri" };
     foreach (string s in wda) Console.WriteLine(s);
     List<string> wdl = new List<string>(wda);
     wdl.RemoveAt(0);
@@ -61,7 +77,29 @@ static void ListDemo()
     //var wlRange = wdl[1..4];
 }
 
-ListDemo();
+//ListDemo();
 
 
+static int Laske(Luku l,ref int a,out int b)
+{
+    b = 72;
+    a += 2;
+    l.arvo = 6;
+    l = new Luku();
+    l.arvo = 20;
+    return a + b;
+}
 
+static void OutRefDemo()
+{
+    int x = 5;
+    //int y = 1;
+    Luku l = new Luku();
+    l.arvo = 8;
+    Console.WriteLine("Laske " + Laske(l, ref x, out int y));
+    Console.WriteLine("X=" + x + ", " + l.arvo + ", y=" + y);
+}
+class Luku
+{
+    public int arvo;
+}
