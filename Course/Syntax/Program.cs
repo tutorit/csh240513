@@ -121,6 +121,15 @@ c2.Make = "Saab";
 
 Console.WriteLine("Make " + c.Make+", "+c.Speed);
 
+Person p = new () { Name = "Jussi",Email="jussi@koe.com",Birthday=DateOnly.Parse("1.2.1980") };
+//p.Name = "Matti";
+Console.WriteLine(p.Name+","+p.Email+","+p.Birthday);
+p.Name = "";
+p.Birthday = DateOnly.Parse("2.6.2024");
+p.Email = null;
+Console.WriteLine(p.Name + "," + p.Email + "," + p.Birthday);
+
+
 class Luku
 {
     public int arvo;
