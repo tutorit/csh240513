@@ -1,4 +1,5 @@
 ﻿// See https://aka.ms/new-console-template for more information
+using Syntax;
 
 static int PromptForInt(string prompt)
 {
@@ -45,7 +46,7 @@ static void ArvausPeli()
     Console.WriteLine($"You got it in {numGuesses} guesses");
 }
 
-ArvausPeli();
+//ArvausPeli();
 
 
 /*
@@ -99,6 +100,27 @@ static void OutRefDemo()
     Console.WriteLine("Laske " + Laske(l, ref x, out int y));
     Console.WriteLine("X=" + x + ", " + l.arvo + ", y=" + y);
 }
+
+static void NullablesDemo()
+{
+    Luku? l = null;
+    int? i = null;
+    Nullable<int> i2 = null;
+    DateTime? dt = null;
+
+    l = new Luku();
+
+    l = null;
+}
+
+Car c = new Car();
+c.Make = "Volvo";
+c.Speed = 150;
+Car c2 = new Car();
+c2.Make = "Saab";
+
+Console.WriteLine("Make " + c.Make+", "+c.Speed);
+
 class Luku
 {
     public int arvo;
