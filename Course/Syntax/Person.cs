@@ -32,7 +32,7 @@ namespace Syntax
             }
             set
             {
-                //if (email!=null) email = value;
+                //if (value!=null) email = value;
                 //email = (value == null) ? "" : value;
                 email = value ?? "";
             }
