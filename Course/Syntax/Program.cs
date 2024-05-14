@@ -121,7 +121,7 @@ c2.Make = "Saab";
 
 Console.WriteLine("Make " + c.Make+", "+c.Speed);
 
-Person p = new () { Name = "Jussi",Email="jussi@koe.com",BirthdayString="1.2.1980"};
+Person p = new ("Jussi") { Email="jussi@koe.com",BirthdayString="1.2.1980"};
 //p.Name = "Matti";
 Console.WriteLine(p.Name+","+p.Email+","+p.Birthday);
 p.Name = "";

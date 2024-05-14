@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,6 +12,14 @@ namespace Syntax
         private string name = "No name";
         private string email = "";
         private DateOnly? birthday=null;
+
+        public Person(string name,string email="",DateOnly? bd=null) 
+        {
+            Name = name;
+            Email = email;
+            Birthday = bd;
+        }
+
 
         public string Name { 
             get { 
