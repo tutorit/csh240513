@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Reporting
 {
-    internal class ScreenReporter : IReporter
+    internal class ScreenReporter : ReporterBase,IReporter
     {
 
         public void BeginReport(string title)

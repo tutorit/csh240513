@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Reporting
 {
-    internal class FileReporter : IReporter
+    internal class FileReporter : ReporterBase,IReporter
     {
         private string filename;
         private StreamWriter writer;
