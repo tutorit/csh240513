@@ -23,5 +23,5 @@ Person p = new Person("Tuomas", "tuomas@veljekset.net", new DateOnly(1980, 4, 2)
 ScreenReporter srep = new ScreenReporter();
 FileReporter frep=new FileReporter(@"c:\demodata\person.txt");
 
-PersonReport pr = new PersonReport(p,srep);
+PersonReport pr = new PersonReport(p,frep);
 pr.DoReport();
