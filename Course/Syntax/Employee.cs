@@ -17,7 +17,7 @@ namespace Syntax
 
         public override string ToString()
         {
-            return Name + " earns " + Salary + "EUR/Month";
+            return Name + "("+ Id+ ") earns " + Salary + "EUR/Month";
         }
 
         public override void DoSomeWork()

@@ -12,12 +12,15 @@ namespace Syntax
         private string name = "No name";
         private string email = "";
         private DateOnly? birthday=null;
+        public int Id { get; private set; }
+        public static int NextID=1;
 
         public Person(string name,string email="",DateOnly? bd=null) 
         {
             Name = name;
             Email = email;
             Birthday = bd;
+            Id=NextID++;
         }
 
 
@@ -74,7 +77,7 @@ namespace Syntax
 
         public override string ToString()
         {
-            return "Person " + Name + ", " + Email + ", " + BirthdayString;
+            return "Person " + Name + "(" + Id +"), " + Email + ", " + BirthdayString;
         }
 
         public virtual void DoSomeWork()

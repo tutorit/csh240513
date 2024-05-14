@@ -149,6 +149,8 @@ Employee e = new Employee("Taavi", 4000);
 e.DoSomeWork();
 PersonTester(e);
 
+Console.WriteLine("We have " + (Person.NextID-1) + " persons");
+
 Customer c1 = new Customer("Mikko", 2000);
 Customer c2 = new Customer("Matti", 3000);
 Customer c3 = new Customer("Mikko", 2000);
@@ -159,6 +161,13 @@ Console.WriteLine("Customer " + c1);
 Console.WriteLine("Customers 1 and 2: "+(c1 == c2));
 Console.WriteLine("Customers 1 and 3: "+(c1 == c3));
 
+
+string tx = "Terve maailma";
+Console.WriteLine("Vasen: " + tx.Substring(0, 3));
+Console.WriteLine("Oikea: " + tx.Substring(tx.Length - 3));
+//string x = MyExtensions.Left(tx, 3);
+Console.WriteLine("Vasen: " + tx.Left(3));
+Console.WriteLine("Oikea: " + tx.Right(3));
 
 static void ShowAndIncrement(Vector v)
 {
@@ -173,7 +182,7 @@ Vector v2 = new Vector(1, 2);
 Console.WriteLine("Vector " + v);
 ShowAndIncrement(v);
 Console.WriteLine("Main " + v.i + "," + v.j);
-//Console.WriteLine("Vector ==" + (v == v2));
+Console.WriteLine("Vector ==" + (v == v2));
 
 class Luku
 {

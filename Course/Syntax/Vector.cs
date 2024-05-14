@@ -16,5 +16,15 @@ namespace Syntax
             this.i=i; 
             this.j=j;
         }
+
+        static public bool operator ==(Vector a, Vector b)
+        {
+            return (a.i==b.i && a.j==b.j);
+        }
+
+        static public bool operator !=(Vector a, Vector b)
+        {
+            return !(a == b);
+        }
     }
 }
