@@ -1,5 +1,6 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using Syntax;
+using System.Security.Cryptography;
 
 static int PromptForInt(string prompt)
 {
@@ -113,22 +114,52 @@ static void NullablesDemo()
     l = null;
 }
 
-Car c = new Car() { Make="Saab"};
-c.Make = "Volvo";
-c.Speed = 150;
-Car c2 = new Car();
-c2.Make = "Saab";
+static void CarDemo()
+{
+    Car c = new Car() { Make = "Saab" };
+    c.Make = "Volvo";
+    c.Speed = 150;
+    Car c2 = new Car();
+    c2.Make = "Saab";
+    Console.WriteLine("Make " + c.Make + ", " + c.Speed);
+}
 
-Console.WriteLine("Make " + c.Make+", "+c.Speed);
 
 Person p = new ("Jussi") { Email="jussi@koe.com",BirthdayString="1.2.1980"};
 //p.Name = "Matti";
 Console.WriteLine(p.Name+","+p.Email+","+p.Birthday);
 p.Name = "";
 p.Birthday = DateOnly.Parse("2.6.2024");
-p.Email = null;
-Console.WriteLine(p.Name + "," + p.Email + "," + p.Birthday);
+//p.Email = null;
+Console.WriteLine("First: "+p.Name + "," + p.Email + "," + p.Birthday);
+Person p2 = new Person("Jussi", "jussi@koe.com", DateOnly.Parse("1.2.1980"));
+Console.WriteLine("Second: "+p2.Name + "," + p2.Email + "," + p2.Birthday);
+Console.WriteLine("Person " + p);
+Console.WriteLine("Person == " + (p == p2));
 
+Customer c1 = new Customer("Mikko", 2000);
+Customer c2 = new Customer("Matti", 3000);
+Customer c3 = new Customer("Mikko", 2000);
+
+Console.WriteLine("Customer " + c1);
+Console.WriteLine("Customers 1 and 2: "+(c1 == c2));
+Console.WriteLine("Customers 1 and 3: "+(c1 == c3));
+
+
+static void ShowAndIncrement(Vector v)
+{
+    v.i += 4;
+    v.j += 5;
+    Console.WriteLine("At vector test "+v.i+","+v.j);
+}
+
+Vector v = new Vector(1, 2);
+Vector v2 = new Vector(1, 2);
+
+Console.WriteLine("Vector " + v);
+ShowAndIncrement(v);
+Console.WriteLine("Main " + v.i + "," + v.j);
+//Console.WriteLine("Vector ==" + (v == v2));
 
 class Luku
 {

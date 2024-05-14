@@ -73,4 +73,6 @@ namespace Syntax
         }
 
     }
+
+    internal record Customer(string Name,double Purchases);
 }
