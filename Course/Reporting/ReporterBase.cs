@@ -8,6 +8,7 @@ namespace Reporting
 {
     internal abstract class ReporterBase
     {
+        public Formatter Formatter { get; set; } = (a, b) => $"{a}={b}";
         private TextWriter writer;
 
         public abstract TextWriter GetWriter();
@@ -27,7 +28,7 @@ namespace Reporting
 
         public void PrintData(string title, string data)
         {
-            writer.WriteLine(title + "=" + data);
+            writer.WriteLine(Formatter(title,data));
         }
 
         public void PrintData(string title, DateOnly? dt)

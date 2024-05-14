@@ -18,10 +18,15 @@ static void ReportingV1()
     rep.EndReport("");
 }
 
+Formatter upper = (a, b) => $"{a.ToUpper()}={b}";
+Formatter xml = (a, b) => $"<{a}>{b}</{a}>";
+Formatter columns = (a, b) => $"{a.PadRight(20)}{b}";
+
 Person p = new Person("Tuomas", "tuomas@veljekset.net", new DateOnly(1980, 4, 2));
 
 ScreenReporter srep = new ScreenReporter();
+srep.Formatter = columns;
 FileReporter frep=new FileReporter(@"c:\demodata\person.txt");
 
-PersonReport pr = new PersonReport(p,frep);
+PersonReport pr = new PersonReport(p,srep);
 pr.DoReport();

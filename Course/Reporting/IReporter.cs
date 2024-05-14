@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 namespace Reporting
 {
+    public delegate string Formatter(string title, string data);
+
     internal interface IReporter
     {
         void BeginReport(string title);
