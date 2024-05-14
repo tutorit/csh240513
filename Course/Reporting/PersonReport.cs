@@ -7,23 +7,25 @@ using System.Threading.Tasks;
 
 namespace Reporting
 {
-    internal class PersonReport : Reporter
+    internal class PersonReport // : FileReporter
     {
         private Person data;
+        private IReporter reporter;
 
-        public PersonReport(Person data)
+        public PersonReport(Person data,IReporter reporter)
         {
             this.data = data;
+            this.reporter= reporter;
         }   
 
         public void DoReport()
         {
-            this.BeginReport("Henkilöraportti");
-            this.PrintData("Name", data.Name);
-            this.PrintData("Email", data.Email);
-            this.PrintData("Birthday", data.Birthday);
-            this.PrintData("Age", data.Age);
-            this.EndReport("");
+            reporter.BeginReport("Henkilöraportti");
+            reporter.PrintData("Name", data.Name);
+            reporter.PrintData("Email", data.Email);
+            reporter.PrintData("Birthday", data.Birthday);
+            reporter.PrintData("Age", data.Age);
+            reporter.EndReport("");
         }
     }
 }
