@@ -8,20 +8,10 @@ namespace Syntax
 {
     internal class Car
     {
-        private string make="Merkitön";
+        //private string make="Merkitön";
         private int speed = 10;
 
-        public string Make
-        {
-            get
-            {
-                return this.make;
-            }
-            set
-            {
-                this.make = value;
-            }
-        }
+        public string Make { get; set; }
 
         public int Speed
         {

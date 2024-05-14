@@ -51,5 +51,17 @@ namespace Syntax
             }
         }
 
+        public string BirthdayString
+        {
+            get
+            {
+                return Birthday?.ToString() ?? "Not known";
+            }
+            set
+            {
+                Birthday=DateOnly.Parse(value);
+            }
+        }
+
     }
 }

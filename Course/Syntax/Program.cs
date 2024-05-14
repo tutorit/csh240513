@@ -113,7 +113,7 @@ static void NullablesDemo()
     l = null;
 }
 
-Car c = new Car();
+Car c = new Car() { Make="Saab"};
 c.Make = "Volvo";
 c.Speed = 150;
 Car c2 = new Car();
@@ -121,7 +121,7 @@ c2.Make = "Saab";
 
 Console.WriteLine("Make " + c.Make+", "+c.Speed);
 
-Person p = new () { Name = "Jussi",Email="jussi@koe.com",Birthday=DateOnly.Parse("1.2.1980") };
+Person p = new () { Name = "Jussi",Email="jussi@koe.com",BirthdayString="1.2.1980"};
 //p.Name = "Matti";
 Console.WriteLine(p.Name+","+p.Email+","+p.Birthday);
 p.Name = "";
