@@ -75,6 +75,14 @@ namespace Syntax
             }
         }
 
+        public int? Age
+        {
+            get
+            {
+                return DateTime.Now.Year - Birthday?.Year;
+            }
+        }
+
         public override string ToString()
         {
             return "Person " + Name + "(" + Id +"), " + Email + ", " + BirthdayString;
