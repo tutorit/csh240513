@@ -130,6 +130,10 @@ static void PersonTester(Person p)
     p.DoSomeWork();
 }
 
+Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("fi-FI");
+Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("fi-FI");
+
+
 Person p = new ("Jussi") { Email="jussi@koe.com",BirthdayString="1.2.1980"};
 //p.Name = "Matti";
 Console.WriteLine(p.Name+","+p.Email+","+p.Birthday);
@@ -168,6 +172,7 @@ Console.WriteLine("Oikea: " + tx.Substring(tx.Length - 3));
 //string x = MyExtensions.Left(tx, 3);
 Console.WriteLine("Vasen: " + tx.Left(3));
 Console.WriteLine("Oikea: " + tx.Right(3));
+
 
 static void ShowAndIncrement(Vector v)
 {

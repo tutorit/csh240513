@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Syntax
 {
-    internal class Person
+    public class Person
     {
         private string name = "No name";
         private string email = "";
