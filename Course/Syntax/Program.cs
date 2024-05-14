@@ -124,6 +124,11 @@ static void CarDemo()
     Console.WriteLine("Make " + c.Make + ", " + c.Speed);
 }
 
+static void PersonTester(Person p)
+{
+    Console.WriteLine("Tester: " + p);
+    p.DoSomeWork();
+}
 
 Person p = new ("Jussi") { Email="jussi@koe.com",BirthdayString="1.2.1980"};
 //p.Name = "Matti";
@@ -137,9 +142,18 @@ Console.WriteLine("Second: "+p2.Name + "," + p2.Email + "," + p2.Birthday);
 Console.WriteLine("Person " + p);
 Console.WriteLine("Person == " + (p == p2));
 
+
+p.DoSomeWork();
+PersonTester(p);
+Employee e = new Employee("Taavi", 4000);
+e.DoSomeWork();
+PersonTester(e);
+
 Customer c1 = new Customer("Mikko", 2000);
 Customer c2 = new Customer("Matti", 3000);
 Customer c3 = new Customer("Mikko", 2000);
+
+//c2.Name = "Teuvo";
 
 Console.WriteLine("Customer " + c1);
 Console.WriteLine("Customers 1 and 2: "+(c1 == c2));

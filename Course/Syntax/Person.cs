@@ -72,7 +72,28 @@ namespace Syntax
             }
         }
 
+        public override string ToString()
+        {
+            return "Person " + Name + ", " + Email + ", " + BirthdayString;
+        }
+
+        public virtual void DoSomeWork()
+        {
+            Console.WriteLine("You cannot give me orders");
+        }
     }
 
     internal record Customer(string Name,double Purchases);
+
+    internal record Customer2
+    {
+        private string name;
+        public double Purchases { get; set; }
+
+        public Customer2(string name,double p)
+        {
+            this.name = name;
+            Purchases = p;
+        }
+    }
 }
