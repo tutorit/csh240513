@@ -6,32 +6,15 @@ using System.Threading.Tasks;
 
 namespace Reporting
 {
-    internal class ScreenReporter : ReporterBase,IReporter
+    internal class ScreenReporter : ReporterBase, IReporter
     {
-
-        public void BeginReport(string title)
+        public override void CloseWriter(TextWriter writer)
         {
-            Console.WriteLine(title);
         }
 
-        public void EndReport(string footer) 
+        public override TextWriter GetWriter()
         {
-            Console.WriteLine(footer);
-        }
-
-        public void PrintData(string title,string data)
-        {
-            Console.WriteLine(title+"="+data);
-        }
-
-        public void PrintData(string title, DateOnly? dt)
-        {
-            PrintData(title, dt?.ToString() ?? "Not known");
-        }
-
-        public void PrintData(string title,int? data)
-        {
-            PrintData(title, data?.ToString() ?? "NaN");
+            return Console.Out;
         }
     }
 }
