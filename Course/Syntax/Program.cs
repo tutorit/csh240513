@@ -1,6 +1,7 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using Syntax;
 using System.Security.Cryptography;
+using System.Threading.Tasks.Dataflow;
 
 static int PromptForInt(string prompt)
 {
@@ -181,13 +182,37 @@ static void ShowAndIncrement(Vector v)
     Console.WriteLine("At vector test "+v.i+","+v.j);
 }
 
-Vector v = new Vector(1, 2);
-Vector v2 = new Vector(1, 2);
+static void VektoriDemot()
+{
+    Vector v = new Vector(1, 2);
+    Vector v2 = new Vector(1, 2);
 
-Console.WriteLine("Vector " + v);
-ShowAndIncrement(v);
-Console.WriteLine("Main " + v.i + "," + v.j);
-Console.WriteLine("Vector ==" + (v == v2));
+    Console.WriteLine("Vector " + v);
+    ShowAndIncrement(v);
+    Console.WriteLine("Main " + v.i + "," + v.j);
+    Console.WriteLine("Vector ==" + (v == v2));
+}
+
+static void Swap<T>(ref T a,ref T b)
+{
+    T c = a;
+    a = b;
+    b = c;
+}
+
+
+double x = 4, y = 5;
+Swap(ref x, ref y);
+Console.WriteLine("Swapin jälkeen "+x+","+y);
+
+Pair<int,int> pi = new(1, 2);
+Console.WriteLine(pi);
+
+Pair<string,string> ps = new("Terve", "maailma");
+Console.WriteLine(ps);
+
+Pair<int, string> psi = new(1, "Moi");
+Console.WriteLine(psi);
 
 class Luku
 {

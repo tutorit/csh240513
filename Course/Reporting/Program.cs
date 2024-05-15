@@ -45,6 +45,14 @@ static void ReportingV3()
     pr.DoReport();
 }
 
+static void ToinenKuuntelija(string viesti)
+{
+    Console.WriteLine("Toka : " + viesti);
+}
+
+Report.ReportEvent += stage => Console.WriteLine("Raportin tapahtuman käsittelijä:" + stage);
+Report.ReportEvent += ToinenKuuntelija;
+
 Formatter upper = (a, b) => $"{a.ToUpper()}={b}";
 Formatter xml = (a, b) => $"<{a}>{b}</{a}>";
 Formatter columns = (a, b) => $"{a.PadRight(20)}{b}";
