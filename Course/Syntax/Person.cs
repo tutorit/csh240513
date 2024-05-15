@@ -95,7 +95,7 @@ namespace Syntax
     }
 
     internal record Customer(string Name,double Purchases);
-
+    
     internal record Customer2
     {
         private string name;
