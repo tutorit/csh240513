@@ -317,6 +317,13 @@ foreach (int a in GetIntValues())
 
 PersonList pl = new();
 pl.ShowAll();
+pl.PrintReverse();
+
+pl.SortByName();
+pl.ShowAll("Sorted by name");
+pl.SortByAge();
+pl.ShowAll("Sorted by age");
+Console.WriteLine("Indekseri:" + pl["Aapo"]);
 
 
 class Luku

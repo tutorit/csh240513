@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Syntax
 {
     [Reporting("Henkilön tiedot")]
-    public class Person
+    public class Person : IComparable<Person>
     {
         private string name = "No name";
         private string email = "";
@@ -93,6 +93,11 @@ namespace Syntax
         public virtual void DoSomeWork()
         {
             Console.WriteLine("You cannot give me orders");
+        }
+
+        public int CompareTo(Person other)
+        {
+            return this.Name.CompareTo(other.Name);
         }
     }
 

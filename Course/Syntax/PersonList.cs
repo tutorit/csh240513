@@ -24,5 +24,29 @@ namespace Syntax
             Console.WriteLine(title);
             foreach (Person p in persons) Console.WriteLine(p);
         }
+
+        public void PrintReverse()
+        {
+            Console.WriteLine("____PRINT_REVERSE____");
+            for(int i=persons.Count-1;i>=0;i--) Console.WriteLine(persons[i]);
+        }
+
+        public void SortByName()
+        {
+            persons.Sort();
+        }
+
+        public void SortByAge()
+        {
+            persons.Sort((a, b) => a.Age.Value - b.Age.Value);
+        }
+
+        public Person this[string name]
+        {
+            get
+            {
+                return persons.Find(p => p.Name == name);
+            }
+        }
     }
 }
