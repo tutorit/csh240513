@@ -15,5 +15,7 @@ namespace Reporting
         void PrintData(string title,string data);
         void PrintData(string title, DateOnly? data);
         void PrintData(string title, int? data);
+
+        Formatter Formatter { get; set; }
     }
 }

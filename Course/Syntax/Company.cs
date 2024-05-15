@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace Syntax
 {
-    internal class Company
+    public class Company
     {
+        public string Name { get; set; }
+        public string Address { get;set; }
+        public string Phone { get; set; }
     }
 }

@@ -51,27 +51,20 @@ Formatter columns = (a, b) => $"{a.PadRight(20)}{b}";
 
 Person p = new Person("Tuomas", "tuomas@veljekset.net", new DateOnly(1980, 4, 2));
 
-ScreenReporter srep = new ScreenReporter();
-srep.Formatter = columns;
-FileReporter frep=new FileReporter(@"c:\demodata\person.txt");
-
-PersonReport pr = new PersonReport(p,srep);
-pr.DoReport();
-
 
 Report pr1 = Report.Create(p);
-pr1.DoReport();
+pr1?.DoReport();
 
-Report pr2 = Report.Create(p,@"c:\demodata\person.txt");
-pr2.DoReport();
+Report pr2 = Report.Create(p,@"c:\demodata\person.txt",xml);
+pr2?.DoReport();
 
 Report pr3 = Report.Create(p,columns);
-pr3.DoReport();
+pr3?.DoReport();
 
 
-Company c = new Company() { Name = "Coders unlimited", Address = "Bugstreet 12" };
+Company c = new Company() { Name = "Coders unlimited", Phone="55523423", Address = "Bugstreet 12" };
 Report cr1 = Report.Create(c);
-cr1.DoReport();
+cr1?.DoReport();
 
 
 
