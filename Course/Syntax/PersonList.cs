@@ -48,5 +48,29 @@ namespace Syntax
                 return persons.Find(p => p.Name == name);
             }
         }
+
+        public IEnumerable<Person> Reverse()
+        {
+            for(int i = persons.Count-1; i >= 0; i--)
+            {
+                yield return persons[i];
+            }
+        }
+
+        public IEnumerable<Person> OrderByNameAgeGreaterThan(int age)
+        {
+            //return from Person p in persons where p.Age > age orderby p.Name select p;
+            return persons
+                .Where(p => p.Age > age)
+                .OrderBy(p => p.Name);
+        }
+
+        public IEnumerable<(string Name, int Age)> Seniors()
+        {
+            return persons
+                .Where(p => p.Age > 60)
+                .OrderBy(p => p.Name)
+                .Select(p => (p.Name, p.Age.Value));
+        }
     }
 }

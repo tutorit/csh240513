@@ -324,7 +324,21 @@ pl.ShowAll("Sorted by name");
 pl.SortByAge();
 pl.ShowAll("Sorted by age");
 Console.WriteLine("Indekseri:" + pl["Aapo"]);
-
+Console.WriteLine("Reverse loop");
+foreach(Person p in pl.Reverse())
+{
+    Console.WriteLine(p);
+}
+Console.WriteLine("By name, age greater than");
+foreach(Person p in pl.OrderByNameAgeGreaterThan(70))
+{
+    Console.WriteLine(p);
+}
+Console.WriteLine("Seniors");
+foreach(var x in pl.Seniors())
+{
+    Console.WriteLine(x.Name + ":" + x.Age);
+}
 
 class Luku
 {
