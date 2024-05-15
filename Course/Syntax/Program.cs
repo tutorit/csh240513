@@ -252,11 +252,34 @@ static void DoReport(object o)
     }
 }
 
-Person p = new Person("Ville", "ville@vallaton.net", new DateOnly(2000, 5, 6));
-DoReport(p);
+static void ReportingByAttr()
+{
+    Person p = new Person("Ville", "ville@vallaton.net", new DateOnly(2000, 5, 6));
+    DoReport(p);
 
-Company c = new() { Name = "Coders Com", Address = "Testallay 12", Phone = "423432" };
-DoReport(c);
+    Company c = new() { Name = "Coders Com", Address = "Testallay 12", Phone = "423432" };
+    DoReport(c);
+}
+
+static void SetDemo()
+{
+    SortedSet<string> hs = new();
+    hs.Add("Mon");
+    hs.Add("Tue");
+    hs.Add("Wed");
+    hs.Add("Thu");
+    hs.Add("Mon");
+    foreach(string s in hs) Console.WriteLine(s);
+    SortedSet<Company> cs = new();
+    cs.Add(new Company() { Name = "Testers Ltd", Address = "Bugstreet" });
+    cs.Add(new Company() { Name = "Coders Ltd", Address = "Codestreet" });
+    cs.Add(new Company() { Name = "Acme Ltd", Address = "Anystreet" });
+    cs.Add(new Company() { Name = "Testers Ltd", Address = "Bugstreet" });
+    foreach (Company c in cs) Console.WriteLine(c.Name); 
+}
+
+
+SetDemo();
 class Luku
 {
     public int arvo;
