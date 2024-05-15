@@ -344,12 +344,16 @@ static void PersonListDemo()
     }
 }
 
+static void SerialisointiDemot()
+{
+    Person p = new("Tuomas", "tuomas@veljekset.net", new DateOnly(2000, 4, 2));
+    p.SaveXML(@"c:\demodata\person.xml");
 
-Person p = new("Tuomas", "tuomas@veljekset.net", new DateOnly(2000, 4, 2));
-p.SaveXML(@"c:\demodata\person.xml");
+    string s = JsonSerializer.Serialize(p);
+    Console.WriteLine(s);
+}
 
-string s=JsonSerializer.Serialize(p);
-Console.WriteLine(s);
+Threads.TheadMain();
 
 class Luku
 {

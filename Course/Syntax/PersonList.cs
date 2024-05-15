@@ -67,7 +67,7 @@ namespace Syntax
 
         public IEnumerable<(string Name, int Age)> Seniors()
         {
-            return persons
+            return persons.AsParallel()
                 .Where(p => p.Age > 60)
                 .OrderBy(p => p.Name)
                 .Select(p => (p.Name, p.Age.Value));
