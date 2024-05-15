@@ -1,5 +1,7 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using Syntax;
+using System.Reflection;
+using System.Reflection.Metadata.Ecma335;
 using System.Security.Cryptography;
 using System.Threading.Tasks.Dataflow;
 
@@ -131,49 +133,51 @@ static void PersonTester(Person p)
     p.DoSomeWork();
 }
 
-Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("fi-FI");
-Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("fi-FI");
+static void TestsAboutPersons()
+{
+    Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("fi-FI");
+    Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("fi-FI");
 
 
-Person p = new ("Jussi") { Email="jussi@koe.com",BirthdayString="1.2.1980"};
-//p.Name = "Matti";
-Console.WriteLine(p.Name+","+p.Email+","+p.Birthday);
-p.Name = "";
-p.Birthday = DateOnly.Parse("2.6.2024");
-//p.Email = null;
-Console.WriteLine("First: "+p.Name + "," + p.Email + "," + p.Birthday);
-Person p2 = new Person("Jussi", "jussi@koe.com", DateOnly.Parse("1.2.1980"));
-Console.WriteLine("Second: "+p2.Name + "," + p2.Email + "," + p2.Birthday);
-Console.WriteLine("Person " + p);
-Console.WriteLine("Person == " + (p == p2));
+    Person p = new("Jussi") { Email = "jussi@koe.com", BirthdayString = "1.2.1980" };
+    //p.Name = "Matti";
+    Console.WriteLine(p.Name + "," + p.Email + "," + p.Birthday);
+    p.Name = "";
+    p.Birthday = DateOnly.Parse("2.6.2024");
+    //p.Email = null;
+    Console.WriteLine("First: " + p.Name + "," + p.Email + "," + p.Birthday);
+    Person p2 = new Person("Jussi", "jussi@koe.com", DateOnly.Parse("1.2.1980"));
+    Console.WriteLine("Second: " + p2.Name + "," + p2.Email + "," + p2.Birthday);
+    Console.WriteLine("Person " + p);
+    Console.WriteLine("Person == " + (p == p2));
 
 
-p.DoSomeWork();
-PersonTester(p);
-Employee e = new Employee("Taavi", 4000);
-e.DoSomeWork();
-PersonTester(e);
+    p.DoSomeWork();
+    PersonTester(p);
+    Employee e = new Employee("Taavi", 4000);
+    e.DoSomeWork();
+    PersonTester(e);
 
-Console.WriteLine("We have " + (Person.NextID-1) + " persons");
+    Console.WriteLine("We have " + (Person.NextID - 1) + " persons");
 
-Customer c1 = new Customer("Mikko", 2000);
-Customer c2 = new Customer("Matti", 3000);
-Customer c3 = new Customer("Mikko", 2000);
+    Customer c1 = new Customer("Mikko", 2000);
+    Customer c2 = new Customer("Matti", 3000);
+    Customer c3 = new Customer("Mikko", 2000);
 
-//c2.Name = "Teuvo";
+    //c2.Name = "Teuvo";
 
-Console.WriteLine("Customer " + c1);
-Console.WriteLine("Customers 1 and 2: "+(c1 == c2));
-Console.WriteLine("Customers 1 and 3: "+(c1 == c3));
+    Console.WriteLine("Customer " + c1);
+    Console.WriteLine("Customers 1 and 2: " + (c1 == c2));
+    Console.WriteLine("Customers 1 and 3: " + (c1 == c3));
 
 
-string tx = "Terve maailma";
-Console.WriteLine("Vasen: " + tx.Substring(0, 3));
-Console.WriteLine("Oikea: " + tx.Substring(tx.Length - 3));
-//string x = MyExtensions.Left(tx, 3);
-Console.WriteLine("Vasen: " + tx.Left(3));
-Console.WriteLine("Oikea: " + tx.Right(3));
-
+    string tx = "Terve maailma";
+    Console.WriteLine("Vasen: " + tx.Substring(0, 3));
+    Console.WriteLine("Oikea: " + tx.Substring(tx.Length - 3));
+    //string x = MyExtensions.Left(tx, 3);
+    Console.WriteLine("Vasen: " + tx.Left(3));
+    Console.WriteLine("Oikea: " + tx.Right(3));
+}
 
 static void ShowAndIncrement(Vector v)
 {
@@ -200,20 +204,59 @@ static void Swap<T>(ref T a,ref T b)
     b = c;
 }
 
+static void GenericsTests()
+{
+    double x = 4, y = 5;
+    Swap(ref x, ref y);
+    Console.WriteLine("Swapin jälkeen " + x + "," + y);
 
-double x = 4, y = 5;
-Swap(ref x, ref y);
-Console.WriteLine("Swapin jälkeen "+x+","+y);
+    Pair<int, int> pi = new(1, 2);
+    Console.WriteLine(pi);
 
-Pair<int,int> pi = new(1, 2);
-Console.WriteLine(pi);
+    Pair<string, string> ps = new("Terve", "maailma");
+    Console.WriteLine(ps);
 
-Pair<string,string> ps = new("Terve", "maailma");
-Console.WriteLine(ps);
+    Pair<int, string> psi = new(1, "Moi");
+    Console.WriteLine(psi);
+}
 
-Pair<int, string> psi = new(1, "Moi");
-Console.WriteLine(psi);
+/*
+Type t = typeof(Person);
+Console.WriteLine(t.Name);
 
+object o = Activator.CreateInstance(t, "Kalevi", "kalevi@koe.com", new DateOnly(2000, 1, 2)); ;
+Console.WriteLine(o);
+foreach(PropertyInfo p in t.GetProperties())
+{
+    Console.WriteLine(p.Name + "=" + p.GetValue(o));
+}
+
+*/
+
+static void DoReport(object o)
+{
+    Type t=o.GetType();
+    ReportingAttribute ra=t.GetCustomAttribute<ReportingAttribute>();
+    if (ra == null)
+    {
+        Console.WriteLine(t.Name + " ei ole raportoitava");
+        return;
+    }
+    Console.WriteLine(ra.Title);
+    foreach(PropertyInfo pi in t.GetProperties())
+    {
+        ra=pi.GetCustomAttribute<ReportingAttribute>();
+        if (ra == null) continue;
+        object val=pi.GetValue(o);
+        Console.WriteLine(ra.Title + "=" + val);
+    }
+}
+
+Person p = new Person("Ville", "ville@vallaton.net", new DateOnly(2000, 5, 6));
+DoReport(p);
+
+Company c = new() { Name = "Coders Com", Address = "Testallay 12", Phone = "423432" };
+DoReport(c);
 class Luku
 {
     public int arvo;

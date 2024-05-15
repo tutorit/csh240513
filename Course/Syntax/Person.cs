@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace Syntax
 {
+    [Reporting("Henkilön tiedot")]
     public class Person
     {
         private string name = "No name";
@@ -23,7 +24,7 @@ namespace Syntax
             Id=NextID++;
         }
 
-
+        [Reporting("Nimi")]
         public string Name { 
             get { 
                 return name; 
@@ -75,6 +76,7 @@ namespace Syntax
             }
         }
 
+        [Reporting("Ikä")]
         public int? Age
         {
             get
