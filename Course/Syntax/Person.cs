@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace Syntax
 {
@@ -13,8 +14,12 @@ namespace Syntax
         private string name = "No name";
         private string email = "";
         private DateOnly? birthday=null;
-        public int Id { get; private set; }
+        
+        [XmlAttribute]
+        public int Id { get; set; }
         public static int NextID=1;
+
+        public Person() { }
 
         public Person(string name,string email="",DateOnly? bd=null) 
         {
@@ -99,6 +104,16 @@ namespace Syntax
         {
             return this.Name.CompareTo(other.Name);
         }
+        public void SaveXML(string fn)
+        {
+            using (StreamWriter sw = new StreamWriter(fn))
+            {
+                XmlSerializer ser = new XmlSerializer(this.GetType());
+                ser.Serialize(sw, this);
+                sw.Flush();
+            }
+        }
+
     }
 
     internal record Customer(string Name,double Purchases);

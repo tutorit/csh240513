@@ -3,6 +3,7 @@ using Syntax;
 using System.Reflection;
 using System.Reflection.Metadata.Ecma335;
 using System.Security.Cryptography;
+using System.Text.Json;
 using System.Threading.Tasks.Dataflow;
 
 static int PromptForInt(string prompt)
@@ -315,30 +316,40 @@ foreach (int a in GetIntValues())
 //SetDemo();
 //DictDemo();
 
-PersonList pl = new();
-pl.ShowAll();
-pl.PrintReverse();
+static void PersonListDemo()
+{
+    PersonList pl = new();
+    pl.ShowAll();
+    pl.PrintReverse();
 
-pl.SortByName();
-pl.ShowAll("Sorted by name");
-pl.SortByAge();
-pl.ShowAll("Sorted by age");
-Console.WriteLine("Indekseri:" + pl["Aapo"]);
-Console.WriteLine("Reverse loop");
-foreach(Person p in pl.Reverse())
-{
-    Console.WriteLine(p);
+    pl.SortByName();
+    pl.ShowAll("Sorted by name");
+    pl.SortByAge();
+    pl.ShowAll("Sorted by age");
+    Console.WriteLine("Indekseri:" + pl["Aapo"]);
+    Console.WriteLine("Reverse loop");
+    foreach (Person p in pl.Reverse())
+    {
+        Console.WriteLine(p);
+    }
+    Console.WriteLine("By name, age greater than");
+    foreach (Person p in pl.OrderByNameAgeGreaterThan(70))
+    {
+        Console.WriteLine(p);
+    }
+    Console.WriteLine("Seniors");
+    foreach (var x in pl.Seniors())
+    {
+        Console.WriteLine(x.Name + ":" + x.Age);
+    }
 }
-Console.WriteLine("By name, age greater than");
-foreach(Person p in pl.OrderByNameAgeGreaterThan(70))
-{
-    Console.WriteLine(p);
-}
-Console.WriteLine("Seniors");
-foreach(var x in pl.Seniors())
-{
-    Console.WriteLine(x.Name + ":" + x.Age);
-}
+
+
+Person p = new("Tuomas", "tuomas@veljekset.net", new DateOnly(2000, 4, 2));
+p.SaveXML(@"c:\demodata\person.xml");
+
+string s=JsonSerializer.Serialize(p);
+Console.WriteLine(s);
 
 class Luku
 {
