@@ -278,8 +278,47 @@ static void SetDemo()
     foreach (Company c in cs) Console.WriteLine(c.Name); 
 }
 
+static void DictDemo()
+{
+    Dictionary<string,Company> cd = new();
+    cd.Add("123",new Company() { Name = "Testers Ltd", Address = "Bugstreet" });
+    cd.Add("456",new Company() { Name = "Coders Ltd", Address = "Codestreet" });
+    //cd.Add("456",new Company() { Name = "Acme Ltd", Address = "Anystreet" });
+    cd["456"]=new Company() { Name = "Acme Ltd", Address = "Anystreet" };
+    cd["xxx"] = new Company() { Name = "SomeCorp", Address = "Facestreet" };
+    
+    Console.WriteLine(cd["456"].Name);
 
-SetDemo();
+    foreach(string key in cd.Keys) Console.WriteLine(key+" => " + cd[key].Name);
+    foreach(Company c in cd.Values) Console.WriteLine(c.Name);
+    foreach(var x in cd) Console.WriteLine(x.Key+" - "+x.Value.Name);
+}
+
+
+static IEnumerable<int> GetIntValues()
+{
+    Console.WriteLine("Eka");
+    yield return 1;
+    Console.WriteLine("Toka");
+    yield return 4;
+    Console.WriteLine("Kolmas");
+    yield return 2;
+    Console.WriteLine("Loppu");
+}
+/*
+foreach (int a in GetIntValues())
+{
+    Console.WriteLine("Silmukka " + a);
+}
+*/
+
+//SetDemo();
+//DictDemo();
+
+PersonList pl = new();
+pl.ShowAll();
+
+
 class Luku
 {
     public int arvo;
